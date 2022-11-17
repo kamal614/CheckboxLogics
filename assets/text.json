@@ -1,0 +1,12 @@
+{
+    "totalBox":"Total no. of Boxes to be displayed on each side",
+    "selectableBox" : "Max no. of total Selection allowed for selecting \n both side",
+    "maxAlpha" : "Max No of Alphabet allowed for selecting",
+    "maxNum" : "Max No of Numbers allowed for selecting",
+    "reset" : "Reset all \n values \n to '0'",
+    "success" : "Success",
+    "enterTotalBoxes" : "Enter Total no. of boxes to be displayed"
+
+
+
+}
