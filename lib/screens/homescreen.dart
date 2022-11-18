@@ -18,13 +18,151 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isLoading = true;
   bool a1 = false;
   List aplhaCB = [];
+  List numericCB = [];
   List displayTextField = [];
+  List displayTextField2 = [];
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await loadJsonText();
     });
+
+    numericCB = [
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("1"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("2"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("3"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("4"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("5"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("6"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("7"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("8"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("9"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("10"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+      {
+        "checkBox": CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text("11"),
+          value: a1,
+          onChanged: (bool? value) {
+            setState(() {
+              a1 = value!;
+            });
+          },
+        ),
+      },
+    ];
+
     aplhaCB = [
       {
         "checkBox": CheckboxListTile(
@@ -41,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("b"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -53,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("c"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -65,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("d"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -77,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("e"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -89,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("f"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -101,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("g"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -113,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("h"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -125,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("i"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -137,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("j"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -149,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
+          title: const Text("k"),
           value: a1,
           onChanged: (bool? value) {
             setState(() {
@@ -172,7 +310,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    bool showValue = false;
+    // bool showValue = false;
 
     return SafeArea(
       child: isLoading
@@ -219,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: width / 12,
                                 width: width / 12,
                                 child: TextFormField(
-                                  style: const TextStyle(fontSize: 8),
+                                  // style: const TextStyle(fontSize: 8),
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) {
                                     try {
@@ -235,28 +373,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                               displayTextField.add(aplhaCB[
                                                   displayTextField.length]);
                                             }
+                                            if (numericCB.length ==
+                                                displayTextField2.length) {
+                                              return;
+                                            } else {
+                                              displayTextField2.add(numericCB[
+                                                  displayTextField2.length]);
+                                            }
                                           });
                                         }
                                       } else {
                                         if (displayTextField.isNotEmpty) {
                                           displayTextField.clear();
                                         }
+                                        if (displayTextField2.isNotEmpty) {
+                                          displayTextField2.clear();
+                                        }
                                       }
                                     } catch (e) {
-                                      print(">>>>>>>ERROR>>>>>>>");
-                                      print(e.toString());
                                       if (displayTextField.isNotEmpty) {
                                         displayTextField.clear();
                                       }
+                                      if (displayTextField2.isNotEmpty) {
+                                        displayTextField2.clear();
+                                      }
                                     }
                                   },
-                                  decoration: const InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.red, width: 5.0),
-                                      ),
-                                      fillColor: Colors.grey,
-                                      focusColor: Colors.grey),
                                 ),
                               ),
                               hSpacer(10),
@@ -300,20 +442,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(border: Border.all()),
                         child: SingleChildScrollView(
                           child: Column(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            // crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              CheckboxListTile(
-                                controlAffinity:
-                                    ListTileControlAffinity.leading,
-                                title: const Text("1"),
-                                value: showValue,
-                                onChanged: (bool? value) {
-                                  setState(() {
-                                    showValue = value!;
-                                  });
-                                },
-                              ),
+                              ...displayTextField2
+                                  .map(
+                                    (e) => Row(
+                                      children: [
+                                        Expanded(child: e['checkBox'])
+                                      ],
+                                    ),
+                                  )
+                                  .toList(),
                             ],
                           ),
                         ),

@@ -19,12 +19,12 @@ Widget inputBox(String text, double width) {
         width: width / 12,
         child: TextFormField(
           onChanged: (value) {},
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 5.0),
-              ),
-              fillColor: Colors.grey,
-              focusColor: Colors.grey),
+          // decoration: const InputDecoration(
+          //     border: OutlineInputBorder(
+          //       borderSide: BorderSide(color: Colors.red, width: 5.0),
+          //     ),
+          //     fillColor: Colors.grey,
+          //     focusColor: Colors.grey),
         ),
       ),
       hSpacer(10),
