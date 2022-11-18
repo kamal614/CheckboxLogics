@@ -38,9 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
           title: const Text("1"),
           value: aa1,
           onChanged: (value) {
-            print("value $value");
             setState(() {
-              aa1 = !value!;
+              aa1 = value!;
             });
           },
         ),

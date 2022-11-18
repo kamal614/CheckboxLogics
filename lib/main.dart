@@ -1,5 +1,6 @@
 import 'package:checkbox/screens/homescreen.dart';
 import 'package:checkbox/screens/test.dart';
+import 'package:checkbox/widgets/calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
