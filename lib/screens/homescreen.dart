@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:checkbox/screens/test.dart';
 import 'package:checkbox/screens/test2.dart';
 import 'package:checkbox/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -17,289 +16,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var jsonResult;
   bool isLoading = true;
-  bool aa1 = false;
-  bool a1 = false;
-  List aplhaCB = [];
-  List numericCB = [];
-  List displayTextField = [];
-  List displayTextField2 = [];
+  List<Check> checkBoxList = [];
+  int cbCount = 0;
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await loadJsonText();
     });
-
-    numericCB = [
-      {
-        "value": aa1,
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("1"),
-          value: aa1,
-          onChanged: (value) {
-            setState(() {
-              aa1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("2"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("3"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("4"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("5"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("6"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("7"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("8"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("9"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("10"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("11"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-    ];
-
-    aplhaCB = [
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("a"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("b"),
-          value: a1,
-          onChanged: (value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("c"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("d"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("e"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("f"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("g"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("h"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("i"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("j"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-      {
-        "checkBox": CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.leading,
-          title: const Text("k"),
-          value: a1,
-          onChanged: (bool? value) {
-            setState(() {
-              a1 = value!;
-            });
-          },
-        ),
-      },
-    ];
   }
 
   loadJsonText() async {
@@ -308,6 +32,13 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       isLoading = false;
     });
+  }
+
+  getWidgetReady(int number) {
+    for (int index = 0; index < number; index++) {
+      checkBoxList.add(Check(value: (index + 1).toString(), checkBool: false));
+    }
+    setState(() {});
   }
 
   Widget build(BuildContext context) {
@@ -368,41 +99,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   onChanged: (value) {
                                     try {
                                       if (int.parse(value) <= 11) {
-                                        for (int i = 1;
-                                            i <= int.parse(value);
-                                            i++) {
-                                          setState(() {
-                                            if (aplhaCB.length ==
-                                                displayTextField.length) {
-                                              return;
-                                            } else {
-                                              displayTextField.add(aplhaCB[
-                                                  displayTextField.length]);
-                                            }
-                                            if (numericCB.length ==
-                                                displayTextField2.length) {
-                                              return;
-                                            } else {
-                                              displayTextField2.add(numericCB[
-                                                  displayTextField2.length]);
-                                            }
-                                          });
-                                        }
+                                        getWidgetReady(int.parse(value));
                                       } else {
-                                        if (displayTextField.isNotEmpty) {
-                                          displayTextField.clear();
-                                        }
-                                        if (displayTextField2.isNotEmpty) {
-                                          displayTextField2.clear();
-                                        }
+                                        checkBoxList.clear();
                                       }
                                     } catch (e) {
-                                      if (displayTextField.isNotEmpty) {
-                                        displayTextField.clear();
-                                      }
-                                      if (displayTextField2.isNotEmpty) {
-                                        displayTextField2.clear();
-                                      }
+                                      checkBoxList.clear();
                                     }
                                   },
                                 ),
@@ -428,19 +130,27 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: width / 2,
                           decoration: BoxDecoration(border: Border.all()),
                           child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                ...displayTextField
-                                    .map(
-                                      (e) => Row(
-                                        children: [
-                                          Expanded(child: e['checkBox'])
-                                        ],
-                                      ),
-                                    )
-                                    .toList(),
-                              ],
-                            ),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: checkBoxList.length,
+                                itemBuilder: (context, int index) =>
+                                    CheckboxListTile(
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      title: Text(checkBoxList[index].value),
+                                      value: checkBoxList[index].checkBool,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          if (cbCount < 3) {
+                                            checkBoxList[index].checkBool =
+                                                value!;
+                                            cbCount++;
+                                          } else {
+                                            print("NOT ALLOWED");
+                                          }
+                                        });
+                                      },
+                                    )),
                           )),
                       Container(
                         height: height - height / 15 - height / 3.4,
@@ -448,17 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(border: Border.all()),
                         child: SingleChildScrollView(
                           child: Column(
-                            children: [
-                              ...displayTextField2
-                                  .map(
-                                    (e) => Row(
-                                      children: [
-                                        Expanded(child: e['checkBox'])
-                                      ],
-                                    ),
-                                  )
-                                  .toList(),
-                            ],
+                            children: [],
                           ),
                         ),
                       )
@@ -469,4 +169,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
     );
   }
+}
+
+class Check {
+  bool checkBool = false;
+  String value = '';
+  Check({
+    required this.checkBool,
+    required this.value,
+  });
 }
