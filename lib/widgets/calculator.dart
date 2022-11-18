@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-Widget listBox(int? checkboxCount) {
+List<Widget> listBox(int? checkboxCount) {
+  List<Widget> checkbox = [];
   if (checkboxCount != null) {
     int i = 0;
     do {
-      // do somethings at least once
+      checkbox.add(Text("hellow"));
       i++;
     } while (i <= checkboxCount);
-
+    return checkbox;
     // for (int i = 0; i <= 5; i++) {
     //   return Text("hellow");
     //   //   return CheckboxListTile(
@@ -22,6 +23,7 @@ Widget listBox(int? checkboxCount) {
     //   // );
     // }
   } else {
-    return Text("data");
+    checkbox.add(Text("a"));
+    return checkbox;
   }
 }

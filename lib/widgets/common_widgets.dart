@@ -18,6 +18,7 @@ Widget inputBox(String text, double width) {
         height: width / 12,
         width: width / 12,
         child: TextFormField(
+          onChanged: (value) {},
           decoration: const InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.red, width: 5.0),
