@@ -119,33 +119,6 @@ class _DynamicTextFieldState extends State<DynamicTextField> {
                     }
                     return null;
                   },
-                  // onChanged: (value) {
-                  //   if (int.parse(value) > 1) {
-                  //     setState(() {
-                  //       if (allTextField.length == displayTextField.length) {
-                  //         print("Same");
-                  //         return;
-                  //       } else {
-                  //         displayTextField
-                  //             .add(allTextField[displayTextField.length]);
-                  //       }
-                  //     });
-                  //   }
-                  // },
-                  onEditingComplete: () {},
-                  onFieldSubmitted: (value) {
-                    if (int.parse(value) > 1) {
-                      setState(() {
-                        if (allTextField.length == displayTextField.length) {
-                          print("Same");
-                          return;
-                        } else {
-                          displayTextField
-                              .add(allTextField[displayTextField.length]);
-                        }
-                      });
-                    }
-                  },
                 ),
                 const SizedBox(
                   height: 20,

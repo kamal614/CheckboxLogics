@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:checkbox/screens/test.dart';
+import 'package:checkbox/screens/test2.dart';
 import 'package:checkbox/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var jsonResult;
   bool isLoading = true;
+  bool aa1 = false;
   bool a1 = false;
   List aplhaCB = [];
   List numericCB = [];
@@ -30,13 +32,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
     numericCB = [
       {
+        "value": aa1,
         "checkBox": CheckboxListTile(
           controlAffinity: ListTileControlAffinity.leading,
           title: const Text("1"),
-          value: a1,
-          onChanged: (bool? value) {
+          value: aa1,
+          onChanged: (value) {
+            print("value $value");
             setState(() {
-              a1 = value!;
+              aa1 = !value!;
             });
           },
         ),
@@ -181,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
           controlAffinity: ListTileControlAffinity.leading,
           title: const Text("b"),
           value: a1,
-          onChanged: (bool? value) {
+          onChanged: (value) {
             setState(() {
               a1 = value!;
             });
@@ -318,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
           : Scaffold(
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                  // Get.to(const DynamicTextField());
+                  Get.to(const Test2());
                 },
               ),
               bottomNavigationBar: Row(
@@ -357,7 +361,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: width / 12,
                                 width: width / 12,
                                 child: TextFormField(
-                                  // style: const TextStyle(fontSize: 8),
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp("^(1[01]|[1-9])\$")),
+                                  ],
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) {
                                     try {
