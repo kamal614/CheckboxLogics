@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         selectableBoxController.clear();
                         maxAlphaController.clear();
                         maxNumController.clear();
-                        resultText == null;
+                        resultText = null;
                       });
                     },
                     child: Container(
