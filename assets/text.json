@@ -6,8 +6,6 @@
     "reset" : "Reset all \n values \n to '0'",
     "success" : "Success",
     "enterTotalBoxes" : "Enter Total no. of boxes to be displayed",
-    "max!=total" : "Maximum nummber cannot be greater than the Total boxes"
-
-
-
+    "max!=total" : "Maximum nummber cannot be greater than the Total boxes",
+    "maxAlpha!=total" : "Maximum albhabet cannot be greater than the Total boxes"
 }

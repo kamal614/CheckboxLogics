@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:checkbox/screens/test2.dart';
 import 'package:checkbox/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,6 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Check> checkBoxList = [];
   List<Check> checkBoxList2 = [];
   int cbCount = 1;
+  int alphaCount = 1;
+
   TextEditingController maxNumController = TextEditingController();
   TextEditingController maxAlphaController = TextEditingController();
   TextEditingController selectableBoxController = TextEditingController();
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
   getWidgetReady(int number) {
     for (int index = 0; index < number; index++) {
       checkBoxList.add(Check(value: (index + 1).toString(), checkBool: false));
-      // checkBoxList2.add(Check(value: (index + 1).toString(), checkBool: false));
+      checkBoxList2.add(Check(value: (index + 1).toString(), checkBool: false));
     }
     setState(() {});
   }
@@ -59,11 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
       child: isLoading
           ? const Center(child: CircularProgressIndicator())
           : Scaffold(
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Get.to(const Test2());
-                },
-              ),
               bottomNavigationBar: Row(
                 children: [
                   Container(
@@ -127,10 +122,95 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(border: Border.all()),
                     child: Column(
                       children: [
-                        inputBox(jsonResult['selectableBox'], width,
-                            selectableBoxController),
-                        inputBox(
-                            jsonResult['maxAlpha'], width, maxAlphaController),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(jsonResult['selectableBox']),
+                                hSpacer(15),
+                                SizedBox(
+                                  height: width / 12,
+                                  width: width / 12,
+                                  child: TextFormField(
+                                    // validator: (value) {},
+                                    keyboardType: TextInputType.number,
+                                    controller: selectableBoxController,
+                                    onChanged: (value) {
+                                      try {
+                                        if (int.parse(
+                                                selectableBoxController.text) <=
+                                            int.parse(allTotalBoxes.text)) {
+                                          return;
+                                        } else {
+                                          setState(() {
+                                            selectableBoxController.clear();
+                                          });
+                                          Fluttertoast.showToast(
+                                              msg: jsonResult[
+                                                  'maxAlpha!=total']);
+                                        }
+                                      } catch (e) {
+                                        setState(() {
+                                          selectableBoxController.clear();
+                                        });
+                                      }
+                                      if (value == null) {
+                                        setState(() {
+                                          selectableBoxController.clear();
+                                        });
+                                      }
+                                    },
+                                  ),
+                                ),
+                                hSpacer(10),
+                              ]),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(jsonResult['maxAlpha']),
+                                hSpacer(15),
+                                SizedBox(
+                                  height: width / 12,
+                                  width: width / 12,
+                                  child: TextFormField(
+                                    // validator: (value) {},
+                                    keyboardType: TextInputType.number,
+                                    controller: maxAlphaController,
+                                    onChanged: (value) {
+                                      try {
+                                        if (int.parse(
+                                                maxAlphaController.text) <=
+                                            int.parse(
+                                                selectableBoxController.text)) {
+                                          return;
+                                        } else {
+                                          setState(() {
+                                            maxAlphaController.clear();
+                                          });
+                                          Fluttertoast.showToast(
+                                              msg: jsonResult[
+                                                  'maxAlpha!=total']);
+                                        }
+                                      } catch (e) {
+                                        setState(() {
+                                          maxAlphaController.clear();
+                                        });
+                                      }
+                                      if (value == null) {
+                                        setState(() {
+                                          maxAlphaController.clear();
+                                        });
+                                      }
+                                    },
+                                  ),
+                                ),
+                                hSpacer(10),
+                              ]),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -148,7 +228,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     onChanged: (value) {
                                       try {
                                         if (int.parse(maxNumController.text) <=
-                                            int.parse(allTotalBoxes.text)) {
+                                            int.parse(selectableBoxController
+                                                    .text) -
+                                                int.parse(
+                                                    maxAlphaController.text)) {
                                           return;
                                         } else {
                                           setState(() {
@@ -188,20 +271,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                       title: Text(checkBoxList[index].value),
                                       value: checkBoxList[index].checkBool,
                                       onChanged: (value) {
-                                        setState(() {
-                                          if (cbCount <=
-                                              int.parse(
-                                                  maxNumController.text)) {
-                                            checkBoxList[index].checkBool =
-                                                value!;
-                                            cbCount++;
-                                          } else {
-                                            setState(() {
-                                              resultText =
-                                                  "Unable to select as Max no of Numbers reached ${maxNumController.text}";
-                                            });
-                                          }
-                                        });
+                                        try {
+                                          setState(() {
+                                            if (cbCount <=
+                                                int.parse(
+                                                    maxNumController.text)) {
+                                              checkBoxList[index].checkBool =
+                                                  value!;
+                                              cbCount++;
+                                            } else {
+                                              setState(() {
+                                                resultText =
+                                                    "Unable to select as Max no of Numbers reached ${maxNumController.text}";
+                                              });
+                                            }
+                                          });
+                                        } catch (e) {
+                                          print(e.toString());
+                                          Fluttertoast.showToast(
+                                              msg:
+                                                  "Enter number to select box");
+                                        }
                                       },
                                     )),
                           )),
@@ -210,10 +300,38 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: width / 2,
                         decoration: BoxDecoration(border: Border.all()),
                         child: SingleChildScrollView(
-                          child: Column(
-                            children: [],
-                          ),
-                        ),
+                            child: SingleChildScrollView(
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: checkBoxList2.length,
+                              itemBuilder: (context, int index) =>
+                                  CheckboxListTile(
+                                    controlAffinity:
+                                        ListTileControlAffinity.leading,
+                                    title: Text(checkBoxList2[index].value),
+                                    value: checkBoxList2[index].checkBool,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        if (alphaCount <=
+                                                int.parse(
+                                                    maxAlphaController.text)
+
+                                            // && (alphaCount + cbCount) <=
+                                            // int.parse(allTotalBoxes.text)
+                                            ) {
+                                          checkBoxList2[index].checkBool =
+                                              value!;
+                                          alphaCount++;
+                                        } else {
+                                          setState(() {
+                                            resultText =
+                                                "Unable to select as Max no of Numbers reached ${maxNumController.text}";
+                                          });
+                                        }
+                                      });
+                                    },
+                                  )),
+                        )),
                       )
                     ],
                   )
