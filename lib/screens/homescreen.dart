@@ -21,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Check> checkBoxList2 = [];
   int cbCount = 1;
   int alphaCount = 1;
-  bool tf1 = true;
 
   TextEditingController maxNumController = TextEditingController();
   TextEditingController maxAlphaController = TextEditingController();
@@ -58,17 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    // bool showValue = false;
 
     return SafeArea(
       child: isLoading
           ? const Center(child: CircularProgressIndicator())
           : Scaffold(
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Get.to(Test());
-                },
-              ),
               bottomNavigationBar: Row(
                 children: [
                   GestureDetector(
@@ -82,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         selectableBoxController.clear();
                         maxAlphaController.clear();
                         maxNumController.clear();
+                        resultText == null;
                       });
                     },
                     child: Container(
@@ -94,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                    color: resultText == null ? Colors.red : Colors.green,
+                    color: resultText == null ? Colors.green : Colors.red,
                     width: width - width / 3,
                     height: height / 15,
                     child: Center(
@@ -105,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               body: GestureDetector(
                 onTap: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
+                  // FocusScope.of(context).requestFocus(FocusNode());
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -123,6 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: width / 12,
                                   width: width / 12,
                                   child: TextFormField(
+                                    textInputAction: TextInputAction.next,
+                                    autofocus: true,
                                     controller: allTotalBoxes,
                                     inputFormatters: <TextInputFormatter>[
                                       FilteringTextInputFormatter.allow(
@@ -130,9 +126,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                     keyboardType: TextInputType.number,
                                     onChanged: (value) {
-                                      setState(() {
-                                        tf1 = false;
-                                      });
                                       try {
                                         if (int.parse(value) <= 11) {
                                           getWidgetReady(int.parse(value));
@@ -145,7 +138,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         checkBoxList2.clear();
                                       }
                                     },
-                                    enabled: tf1,
                                   ),
                                 ),
                                 hSpacer(10),
@@ -167,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: width / 12,
                                     width: width / 12,
                                     child: TextFormField(
-                                      // validator: (value) {},
+                                      textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.number,
                                       controller: selectableBoxController,
                                       onChanged: (value) {
@@ -217,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: width / 12,
                                     width: width / 12,
                                     child: TextFormField(
-                                      // validator: (value) {},
+                                      textInputAction: TextInputAction.next,
                                       keyboardType: TextInputType.number,
                                       controller: maxAlphaController,
                                       onChanged: (value) {
@@ -267,6 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     height: width / 12,
                                     width: width / 12,
                                     child: TextFormField(
+                                      textInputAction: TextInputAction.done,
                                       keyboardType: TextInputType.number,
                                       controller: maxNumController,
                                       onChanged: (value) {
@@ -336,8 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             });
                                           } catch (e) {
                                             Fluttertoast.showToast(
-                                                msg:
-                                                    "Enter number to select box");
+                                                msg: jsonResult['fillDetails']);
                                           }
                                         },
                                       )),
@@ -374,14 +366,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                             } else {
                                               setState(() {
                                                 resultText =
-                                                    "Unable to select as Max no of Numbers reached ${maxNumController.text}";
+                                                    "Unable to select as Max no of Alphabets reached ${maxAlphaController.text}";
                                               });
                                             }
                                           });
                                         } catch (e) {
                                           Fluttertoast.showToast(
-                                              msg:
-                                                  "Enter number to select box");
+                                              msg: jsonResult['fillDetails']);
                                         }
                                       },
                                     )),
