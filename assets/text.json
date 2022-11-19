@@ -5,7 +5,8 @@
     "maxNum" : "Max No of Numbers allowed for selecting",
     "reset" : "Reset all \n values \n to '0'",
     "success" : "Success",
-    "enterTotalBoxes" : "Enter Total no. of boxes to be displayed"
+    "enterTotalBoxes" : "Enter Total no. of boxes to be displayed",
+    "max!=total" : "Maximum nummber cannot be greater than the Total boxes"
 
 
 

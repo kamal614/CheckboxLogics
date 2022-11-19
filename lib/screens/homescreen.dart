@@ -4,6 +4,7 @@ import 'package:checkbox/screens/test2.dart';
 import 'package:checkbox/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +18,14 @@ class _HomeScreenState extends State<HomeScreen> {
   var jsonResult;
   bool isLoading = true;
   List<Check> checkBoxList = [];
-  int cbCount = 0;
+  List<Check> checkBoxList2 = [];
+  int cbCount = 1;
+  TextEditingController maxNumController = TextEditingController();
+  TextEditingController maxAlphaController = TextEditingController();
+  TextEditingController selectableBoxController = TextEditingController();
+  TextEditingController allTotalBoxes = TextEditingController();
+
+  String? resultText;
   @override
   void initState() {
     super.initState();
@@ -37,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
   getWidgetReady(int number) {
     for (int index = 0; index < number; index++) {
       checkBoxList.add(Check(value: (index + 1).toString(), checkBool: false));
+      // checkBoxList2.add(Check(value: (index + 1).toString(), checkBool: false));
     }
     setState(() {});
   }
@@ -66,11 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: const TextStyle(color: Colors.white)),
                   ),
                   Container(
-                    color: Colors.green,
+                    color: resultText == null ? Colors.red : Colors.green,
                     width: width - width / 3,
                     height: height / 15,
                     child: Center(
-                        child: Text(jsonResult['success'],
+                        child: Text(resultText ?? "Waiting",
                             style: const TextStyle(color: Colors.white))),
                   )
                 ],
@@ -91,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: width / 12,
                                 width: width / 12,
                                 child: TextFormField(
+                                  controller: allTotalBoxes,
                                   inputFormatters: <TextInputFormatter>[
                                     FilteringTextInputFormatter.allow(
                                         RegExp("^(1[01]|[1-9])\$")),
@@ -117,9 +127,47 @@ class _HomeScreenState extends State<HomeScreen> {
                     decoration: BoxDecoration(border: Border.all()),
                     child: Column(
                       children: [
-                        inputBox(jsonResult['selectableBox'], width),
-                        inputBox(jsonResult['maxAlpha'], width),
-                        inputBox(jsonResult['maxNum'], width),
+                        inputBox(jsonResult['selectableBox'], width,
+                            selectableBoxController),
+                        inputBox(
+                            jsonResult['maxAlpha'], width, maxAlphaController),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(jsonResult['maxNum']),
+                                hSpacer(15),
+                                SizedBox(
+                                  height: width / 12,
+                                  width: width / 12,
+                                  child: TextFormField(
+                                    // validator: (value) {},
+                                    keyboardType: TextInputType.number,
+                                    controller: maxNumController,
+                                    onChanged: (value) {
+                                      try {
+                                        if (int.parse(maxNumController.text) <=
+                                            int.parse(allTotalBoxes.text)) {
+                                          return;
+                                        } else {
+                                          setState(() {
+                                            maxNumController.clear();
+                                          });
+                                          Fluttertoast.showToast(
+                                              msg: jsonResult['max!=total']);
+                                        }
+                                      } catch (e) {
+                                        setState(() {
+                                          maxNumController.clear();
+                                        });
+                                      }
+                                    },
+                                  ),
+                                ),
+                                hSpacer(10),
+                              ]),
+                        )
                       ],
                     ),
                   ),
@@ -141,12 +189,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       value: checkBoxList[index].checkBool,
                                       onChanged: (value) {
                                         setState(() {
-                                          if (cbCount < 3) {
+                                          if (cbCount <=
+                                              int.parse(
+                                                  maxNumController.text)) {
                                             checkBoxList[index].checkBool =
                                                 value!;
                                             cbCount++;
                                           } else {
-                                            print("NOT ALLOWED");
+                                            setState(() {
+                                              resultText =
+                                                  "Unable to select as Max no of Numbers reached ${maxNumController.text}";
+                                            });
                                           }
                                         });
                                       },
